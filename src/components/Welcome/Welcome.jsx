@@ -7,15 +7,13 @@ const Welcome = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Función helper para obtener la URL base de la API
-  const getApiUrl = () => {
-    return window.location.origin;
-  };
+  // Obtener la URL base de la API desde las variables de entorno
+  const getApiUrl = () => import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const apiUrl = import.meta.env.VITE_API_URL;
+        const apiUrl = getApiUrl();
         const response = await fetch(`${apiUrl}/api/auth/check-auth`, {
           method: 'GET',
           credentials: 'include',
@@ -50,20 +48,20 @@ const Welcome = () => {
     };
 
     checkAuth();
-  }, [navigate]); // <-- Falta el cierre del useEffect aquí
+  }, [navigate]);
 
   const handleLogout = async () => {
     try {
       const apiUrl = getApiUrl();
       const response = await fetch(`${apiUrl}/api/auth/logout`, {
-        method: 'GET',
+        method: 'POST', // Usar POST para evitar caché en navegadores
         credentials: 'include',
       });
 
       const data = await response.json();
 
       if (data.success) {
-        navigate('/login');
+        window.location.href = '/login'; // Redirección segura después del logout
       } else {
         throw new Error('Error durante el logout');
       }

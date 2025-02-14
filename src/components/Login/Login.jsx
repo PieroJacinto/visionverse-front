@@ -42,10 +42,10 @@ const Login = () => {
   const handleGoogleLogin = () => {
     try {
       const apiUrl = import.meta.env.VITE_API_URL;
-      console.log('API URL:', apiUrl); // Para debugging
+      console.log('Redirecting to:', `${apiUrl}/api/auth/google`);
       window.location.href = `${apiUrl}/api/auth/google`;
     } catch (error) {
-      console.error('Error al iniciar sesión con Google:', error);
+      console.error('Error iniciando sesión con Google:', error);
     }
   };
   return (

@@ -50,14 +50,9 @@ const Login = () => {
   };
   return (
     <div className="page-container">
-      <div className="logo-container">
-        <h1 className="logo-text">
-          <span className="logo-visi">VISI</span>
-          <span className="logo-o">⦿</span>
-          <span className="logo-n">N</span>
-          <span className="logo-verse">VERSE</span>
-        </h1>
-      </div>
+       <div className="logo-container">
+          <img src="/logo.png" alt="VisionVerse Logo" className="logo-image" />
+        </div>
 
       <div className="login-container">
         <div className="login-card">

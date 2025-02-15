@@ -22,28 +22,39 @@ html, body {
 
 .logo-container {
   position: absolute;
-  top: 2rem;
+  top: 0;
   left: 0;
   right: 0;
+  height: 20vh; /* Reducido de 25vh a 20vh para acercar al formulario */
   display: flex;
   justify-content: center;
-  z-index: 2;
+  align-items: flex-end; /* Cambiado a flex-end para empujar el logo hacia abajo */
+  z-index: 10;
+  pointer-events: none;
+  padding-bottom: 20px; /* Añadido padding abajo para ajustar espacio con el form */
 }
 
 .logo-image {
-  width: 400px;
+  width: 1200px; /* Aumentado a 1200px */
   height: auto;
+  max-height: none; /* Eliminado el max-height que estaba limitando el tamaño */
+  max-width: 90vw;
+  object-fit: contain;
+  pointer-events: auto;
 }
 
 .login-container {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
+  top: 20vh; /* Ajustado para coincidir con el nuevo height del logo-container */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0 1rem;
   box-sizing: border-box;
-  z-index: 1;
+  z-index: 5;
 }
 
 .login-card {
@@ -55,6 +66,7 @@ html, body {
   width: 100%;
   max-width: 350px;
   margin: 0 auto;
+  transform: translateY(-10vh); /* Ajustado para acercar más al logo */
 }
 
 .login-form {
@@ -187,96 +199,105 @@ html, body {
 }
 
 /* Responsive Design */
+.logo-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 28vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.logo-image {
+  width: 800px; /* Aumentado a 800px */
+  height: auto;
+  max-height: 28vh;
+  max-width: 90vw; /* Para asegurar que no se desborde en pantallas pequeñas */
+  object-fit: contain;
+  pointer-events: auto;
+}
+
+/* Mantenemos los media queries pero actualizamos los tamaños */
 @media (max-width: 1024px) {
-  .logo-container {
-    top: 1.5rem;
-  }
-  
   .logo-image {
-    width: 350px;
-  }
-  
-  .login-card {
-    padding: 2rem;
-    max-width: 340px;
-    width: 90%;
+    width: 1000px;
+    
   }
 }
 
 @media (max-width: 768px) {
-  .logo-container {
-    top: 1rem;
-  }
-  
   .logo-image {
-    width: 300px;
-  }
-
-  .login-card {
-    padding: 1.5rem;
-    max-width: 300px;
-  }
-
-  .form-control {
-    padding: 0.6rem;
-    font-size: 0.85rem;
+    width: 800px;
   }
 }
 
 @media (max-width: 480px) {
   .logo-container {
-    top: 0.75rem;
+    height: 15vh;
   }
   
   .logo-image {
-    width: 250px;
+    width: 600px;
   }
-
+  
   .login-container {
-    padding: 0 0.5rem;
+    top: 15vh;
   }
-
-  .social-login {
-    gap: 1.5rem;
+  
+  .login-card {
+    transform: translateY(-7.5vh);
   }
 }
 
 @media (max-height: 600px) {
   .logo-container {
-    top: 0.5rem;
+    height: 12vh;
   }
   
   .logo-image {
-    width: 200px;
+    width: 500px;
+  }
+  
+  .login-container {
+    top: 12vh;
+  }
+  
+  .login-card {
+    transform: translateY(-6vh);
   }
 }
 
 @media (max-width: 320px) {
   .logo-image {
-    width: 200px;
-  }
-
-  .social-login {
-    gap: 1rem;
-  }
-
-  .social-login img {
-    width: 20px;
-    height: 20px;
+    width: 400px;
   }
 }
+
 
 /* Ajuste para pantallas muy pequeñas en altura */
 @media (max-height: 500px) {
   .page-container {
-    overflow-y: auto;
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  .logo-container {
+    position: relative;
+    top: 0.5rem;
+    margin-bottom: 1rem;
   }
   
   .login-container {
     position: relative;
+    height: auto;
+    padding: 80px 1rem 2rem;
+  }
+
+  .login-card {
     transform: none;
-    top: 120px;
-    left: 0;
-    margin-bottom: 2rem;
   }
 }

@@ -48,6 +48,26 @@ const Login = () => {
       console.error('Error iniciando sesión con Google:', error);
     }
   };
+  
+  const handleFacebookLogin = () => {
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL;
+      if (!apiUrl) {
+        console.error('Error: VITE_API_URL no está definido en las variables de entorno');
+        alert('Error de configuración. Por favor contacte al administrador.');
+        return;
+      }
+      
+      console.log('Iniciando login con Facebook...');
+      console.log('Redirecting to:', `${apiUrl}/api/auth/facebook`);
+      
+      // Opcional: añadir un parámetro para depuración
+      window.location.href = `${apiUrl}/api/auth/facebook?debug=true`;
+    } catch (error) {
+      console.error('Error iniciando sesión con Facebook:', error);
+      alert('Ocurrió un error al intentar iniciar sesión con Facebook');
+    }
+  };
   return (
     <div className="page-container">
        <div className="logo-container">
@@ -126,12 +146,27 @@ const Login = () => {
                     onClick={handleGoogleLogin}
                     style={{ cursor: "pointer" }}
                   />
-                  <img src="/facebook-icon.png" alt="Facebook" />
+                  <img 
+                    src="/facebook-icon.png" 
+                    alt="Facebook" 
+                    onClick={handleFacebookLogin}
+                    style={{ cursor: "pointer" }}
+                  />
                   <img src="/apple-icon.png" alt="Apple" />
                 </div>
 
                 <div className="contact-support">
                   Need an account? Contact support
+                </div>
+
+                <div className="policy-links" style={{ marginTop: '1rem', fontSize: '0.8rem', textAlign: 'center' }}>
+                  <a href="/terms-of-service" target="_blank" rel="noopener noreferrer">
+                    Terms of Service
+                  </a>
+                  {' | '}
+                  <a href="/data-deletion" target="_blank" rel="noopener noreferrer">
+                    Data Deletion Policy
+                  </a>
                 </div>
               </Form>
             )}

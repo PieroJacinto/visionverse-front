@@ -25,20 +25,19 @@ html, body {
   top: 0;
   left: 0;
   right: 0;
-  height: 20vh; /* Reducido de 25vh a 20vh para acercar al formulario */
+  height: 28vh;
   display: flex;
   justify-content: center;
-  align-items: flex-end; /* Cambiado a flex-end para empujar el logo hacia abajo */
+  align-items: center;
   z-index: 10;
   pointer-events: none;
-  padding-bottom: 20px; /* Añadido padding abajo para ajustar espacio con el form */
 }
 
 .logo-image {
-  width: 1200px; /* Aumentado a 1200px */
+  width: 800px; /* Aumentado a 800px */
   height: auto;
-  max-height: none; /* Eliminado el max-height que estaba limitando el tamaño */
-  max-width: 90vw;
+  max-height: 28vh;
+  max-width: 90vw; /* Para asegurar que no se desborde en pantallas pequeñas */
   object-fit: contain;
   pointer-events: auto;
 }
@@ -199,27 +198,6 @@ html, body {
 }
 
 /* Responsive Design */
-.logo-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 28vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-  pointer-events: none;
-}
-
-.logo-image {
-  width: 800px; /* Aumentado a 800px */
-  height: auto;
-  max-height: 28vh;
-  max-width: 90vw; /* Para asegurar que no se desborde en pantallas pequeñas */
-  object-fit: contain;
-  pointer-events: auto;
-}
 
 /* Mantenemos los media queries pero actualizamos los tamaños */
 @media (max-width: 1024px) {

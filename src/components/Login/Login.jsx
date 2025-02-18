@@ -57,22 +57,42 @@ const Login = () => {
         alert('Error de configuración. Por favor contacte al administrador.');
         return;
       }
-      
-      console.log('Iniciando login con Facebook...');
-      console.log('Redirecting to:', `${apiUrl}/api/auth/facebook`);
-      
-      // Opcional: añadir un parámetro para depuración
       window.location.href = `${apiUrl}/api/auth/facebook?debug=true`;
     } catch (error) {
       console.error('Error iniciando sesión con Facebook:', error);
       alert('Ocurrió un error al intentar iniciar sesión con Facebook');
     }
   };
+
+  const handleAppleLogin = () => {
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL;
+      if (!apiUrl) {
+        console.error('Error: VITE_API_URL no está definido en las variables de entorno');
+        alert('Error de configuración. Por favor contacte al administrador.');
+        return;
+      }
+      
+      console.log('Iniciando login con Apple...');
+      console.log('Redirecting to:', `${apiUrl}/api/auth/apple`);
+      
+      // En desarrollo, usar la ruta de prueba
+      if (import.meta.env.DEV) {
+        window.location.href = `${apiUrl}/api/auth/apple/test`;
+      } else {
+        window.location.href = `${apiUrl}/api/auth/apple?debug=true`;
+      }
+    } catch (error) {
+      console.error('Error iniciando sesión con Apple:', error);
+      alert('Ocurrió un error al intentar iniciar sesión con Apple');
+    }
+  };
+
   return (
     <div className="page-container">
-       <div className="logo-container">
-          <img src="/logo.png" alt="VisionVerse Logo" className="logo-image" />
-        </div>
+      <div className="logo-container">
+        <img src="/logo.png" alt="VisionVerse Logo" className="logo-image" />
+      </div>
 
       <div className="login-container">
         <div className="login-card">
@@ -152,7 +172,12 @@ const Login = () => {
                     onClick={handleFacebookLogin}
                     style={{ cursor: "pointer" }}
                   />
-                  <img src="/apple-icon.png" alt="Apple" />
+                  <img 
+                    src="/apple-icon.png" 
+                    alt="Apple" 
+                    onClick={handleAppleLogin}
+                    style={{ cursor: "pointer" }}
+                  />
                 </div>
 
                 <div className="contact-support">
